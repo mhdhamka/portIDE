@@ -59,10 +59,9 @@
 ```text
 portIDE/
 ├── public/                 # Static assets & logos
-├── src/
-│   ├── app/                # Next.js App Router pages & API routes
-│   ├── components/         # IDE layout, sidebar, terminal & editor components
-│   └── styles/             # Modular CSS stylesheets & theme variables
+├── app/                    # Next.js App Router pages & API routes
+├── components/         # IDE layout, sidebar, terminal & editor components
+├── styles/             # Modular CSS stylesheets & theme variables
 ├── .env                    # Environment configuration
 ├── package.json
 └── README.md

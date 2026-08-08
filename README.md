@@ -1,6 +1,6 @@
 <div align="center">
 
-# ⚡ portIDE
+# ⚡ portIDE: Visual Studio Code Next.js Interactive Portfolio Workspace
 
 **An immersive, production-grade developer portfolio platform designed precisely to emulate a fully functional Visual Studio Code and multi-IDE workspace environment.**
 
@@ -15,7 +15,7 @@
 
 ---
 
-## 🎯 Overview
+## Overview
 
 **portIDE** breaks away from static, cookie-cutter portfolios. Built using Next.js 15, Turbopack, and CSS Modules, it functions as an interactive developer workspace. Visitors can experience a true-to-life IDE interface complete with a sidebar file explorer, active editor tabs, live code playgrounds, an AI-native composer agent, and real-time GitHub repository synchronization.
 
@@ -33,7 +33,7 @@
 
 ---
 
-## ✨ Key Features
+## Key Features
 
 * **VS Code Layout Engine:** Interactive sidebar file explorer, active tabs management, status bar, and command palette (`Ctrl+Shift+P`).
 * **Multi-IDE Engine Switcher:** Instantly toggle between Cursor AI-Native, JetBrains IDEA, and GitHub Codespaces environments with dynamic telemetry status updates.

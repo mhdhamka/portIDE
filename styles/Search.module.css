@@ -1,0 +1,290 @@
+.searchContainer {
+  padding: 16px;
+  color: var(--text-color, #c9d1d9);
+  font-family: var(--font-geist-sans, sans-serif);
+  height: 100%;
+  overflow-y: auto;
+  background: var(--editor-bg, #0d1117);
+}
+
+/* GitHub Header Styling */
+.ghHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #30363d;
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+}
+
+.ghTitleGroup {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.ghRepoIcon {
+  color: #8b949e;
+}
+
+.ghRepoOwner {
+  color: #58a6ff;
+}
+
+.ghSlash {
+  color: #8b949e;
+}
+
+.ghRepoName {
+  color: #c9d1d9;
+}
+
+.ghBadges {
+  display: flex;
+  gap: 6px;
+}
+
+.ghBadge {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #30363d;
+  padding: 2px 6px;
+  border-radius: 12px;
+  font-size: 11px;
+  color: #8b949e;
+}
+
+.inputWrapper {
+  margin-bottom: 16px;
+}
+
+.searchBoxContainer {
+  display: flex;
+  align-items: center;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 6px 10px;
+  gap: 8px;
+}
+
+.searchBoxContainer:focus-within {
+  border-color: #58a6ff;
+  box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.3);
+}
+
+.searchIcon {
+  color: #8b949e;
+  flex-shrink: 0;
+}
+
+.searchInput {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #c9d1d9;
+  font-size: 13px;
+  width: 100%;
+}
+
+.searchInput::placeholder {
+  color: #8b949e;
+}
+
+.searchOptions {
+  display: flex;
+  gap: 2px;
+}
+
+.searchOptions button {
+  background: transparent;
+  border: none;
+  color: #8b949e;
+  padding: 3px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.searchOptions button:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #c9d1d9;
+}
+
+/* GitHub Filter Tabs */
+.filterTabs {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+  border-bottom: 1px solid #30363d;
+  padding-bottom: 8px;
+}
+
+.filterTab {
+  background: transparent;
+  border: none;
+  color: #8b949e;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filterTab:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #c9d1d9;
+}
+
+.activeFilter {
+  background: #238636;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.resultCount {
+  font-size: 11.5px;
+  color: #8b949e;
+  margin-top: 8px;
+}
+
+.noResults {
+  font-size: 12.5px;
+  color: #8b949e;
+  padding: 16px 0;
+  text-align: center;
+  font-style: italic;
+}
+
+.fileGroup {
+  margin-bottom: 12px;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  background: #161b22;
+  overflow: hidden;
+}
+
+.fileHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px 12px;
+  background: #21262d;
+  border-bottom: 1px solid #30363d;
+  font-size: 12.5px;
+}
+
+.fileHeader:hover {
+  background: #30363d;
+}
+
+.fileHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.fileChevron {
+  color: #8b949e;
+  transform: rotate(90deg);
+}
+
+.commitIcon {
+  color: #58a6ff;
+}
+
+.prIcon {
+  color: #3fb950;
+}
+
+.repoTag {
+  color: #58a6ff;
+  font-weight: 500;
+}
+
+.fileName {
+  color: #c9d1d9;
+}
+
+.matchBadge {
+  font-size: 11px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 1px 6px;
+  border-radius: 10px;
+  color: #8b949e;
+}
+
+.matchesContainer {
+  padding: 6px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.matchItem {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 4px 12px;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: monospace;
+}
+
+.matchItem:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.lineNumber {
+  color: #484f58;
+  min-width: 20px;
+  text-align: right;
+}
+
+.matchText {
+  color: #c9d1d9;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.highlight {
+  background: rgba(56, 139, 253, 0.4);
+  color: #ffffff;
+  border-radius: 2px;
+  padding: 0 2px;
+}
+
+.quickTagsContainer {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.filterIcon {
+  color: #8b949e;
+  margin-right: 2px;
+}
+
+.tagPill {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #30363d;
+  color: #8b949e;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tagPill:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #c9d1d9;
+}
+
+.activeTagPill {
+  background: #1f6feb;
+  border-color: #388bfd;
+  color: #ffffff;
+  font-weight: 500;
+}

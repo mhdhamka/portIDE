@@ -1,0 +1,178 @@
+.codeWrapper {
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+  margin-bottom: 40px;
+}
+
+/* VS Code Title Bar / Toolbar */
+.codeToolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #161b22;
+  padding: 10px 16px;
+  border-bottom: 1px solid #30363d;
+  font-size: 12px;
+  color: #8b949e;
+}
+
+.toolbarTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #c9d1d9;
+  font-weight: 500;
+}
+
+.copyBtn {
+  background: #21262d;
+  border: 1px solid #30363d;
+  color: #c9d1d9;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.copyBtn:hover {
+  background: #30363d;
+  color: #ffffff;
+  border-color: #8b949e;
+}
+
+/* Code Content Area with Line Numbers */
+.code {
+  padding: 20px 24px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #e6edf3;
+  counter-reset: line;
+}
+
+.line {
+  position: relative;
+  padding-left: 3rem;
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.line::before {
+  content: counter(line);
+  counter-increment: line;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.5rem;
+  text-align: right;
+  color: #484f58;
+  font-size: 12px;
+}
+
+/* Syntax Highlighting Tokens */
+.className {
+  color: #ff7b72;
+}
+
+.funcName {
+  color: #d2a8ff;
+}
+
+.keyword {
+  color: #ff7b72;
+}
+
+/* Interactive Endpoint Trigger Buttons */
+.endpointBtn {
+  background: rgba(56, 139, 253, 0.1);
+  border: 1px solid rgba(56, 139, 253, 0.3);
+  color: #58a6ff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+}
+
+.endpointBtn:hover {
+  background: rgba(56, 139, 253, 0.2);
+  border-color: #58a6ff;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.activeEndpoint {
+  background: rgba(63, 185, 80, 0.2) !important;
+  border-color: #3fb950 !important;
+  color: #3fb950 !important;
+}
+
+.externalLink {
+  color: #8b949e;
+  margin-left: 6px;
+  text-decoration: none;
+  font-size: 11px;
+  transition: color 0.2s;
+}
+
+.externalLink:hover {
+  color: #58a6ff;
+}
+
+/* Integrated Bottom Terminal / Console Output */
+.responseTerminal {
+  margin: 16px -24px -20px -24px;
+  background: #010409;
+  border-top: 1px solid #30363d;
+  padding: 16px 24px;
+  font-family: var(--font-mono, monospace);
+}
+
+.terminalHeader {
+  font-size: 11px;
+  color: #8b949e;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.terminalOutput {
+  margin: 0;
+  color: #7ee787;
+  font-size: 12px;
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
+
+/* Responsive layout adjustments */
+@media screen and (max-width: 600px) {
+  .code {
+    padding: 14px 12px;
+    font-size: 12px;
+  }
+  .line {
+    padding-left: 2rem;
+  }
+  .line::before {
+    width: 1rem;
+    font-size: 10px;
+  }
+  .responseTerminal {
+    margin: 12px -12px -14px -12px;
+    padding: 12px;
+  }
+}

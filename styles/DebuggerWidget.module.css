@@ -1,0 +1,143 @@
+.debuggerWrapper {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 32px 0;
+  box-shadow: 0 16px 40px rgba(1, 4, 9, 0.7);
+  font-family: ui-monospace, monospace;
+}
+
+.debuggerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: #0d1117;
+  border-bottom: 1px solid #30363d;
+}
+
+.titleGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #e6edf3;
+}
+
+.toolbar {
+  display: flex;
+  gap: 8px;
+}
+
+.toolBtn {
+  background: #21262d;
+  border: 1px solid #30363d;
+  color: #c9d1d9;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-family: ui-monospace, monospace;
+  transition: background 0.2s;
+}
+
+.toolBtn:hover {
+  background: #30363d;
+  color: #58a6ff;
+}
+
+.debuggerBody {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  background: #0d1117;
+}
+
+@media (max-width: 768px) {
+  .debuggerBody {
+    grid-template-columns: 1fr;
+  }
+}
+
+.codePane {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-right: 1px solid #30363d;
+}
+
+.codeRow {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #8b949e;
+}
+
+.activeRow {
+  background: rgba(210, 153, 34, 0.15);
+  border-left: 3px solid #d29922;
+  color: #e6edf3;
+}
+
+.lineNo {
+  width: 24px;
+  color: #484f58;
+  text-align: right;
+  margin-right: 12px;
+}
+
+.breakpoint {
+  width: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.codeText {
+  font-family: ui-monospace, monospace;
+}
+
+.inspectorPane {
+  padding: 16px;
+  background: #11161d;
+}
+
+.inspectorTitle {
+  font-size: 10px;
+  color: #8b949e;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #30363d;
+  padding-bottom: 6px;
+}
+
+.variableList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.varItem {
+  font-size: 11px;
+  display: flex;
+  justify-content: space-between;
+  background: #161b22;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #30363d;
+}
+
+.varKey {
+  color: #79c0ff;
+}
+
+.varVal {
+  color: #7ee787;
+}

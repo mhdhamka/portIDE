@@ -1,0 +1,898 @@
+/* About Page - Advanced Git & VS Code portIDE Theme */
+
+.page {
+  width: 100%;
+  background: var(--main-bg, #0d1117);
+  min-height: 100%;
+  padding-bottom: 60px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+/* IDE Top Bar / Git Breadcrumbs */
+.ideTopBar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #161b22;
+  border: 1px solid #30363d;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  margin-bottom: 32px;
+}
+
+.workspaceBreadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #8b949e;
+}
+
+.folderRoot {
+  color: #ff2d20; /* PHP / Laravel accent hint */
+  font-weight: 600;
+}
+
+.folderSub {
+  color: #c9d1d9;
+}
+
+.separator {
+  color: #484f58;
+}
+
+.activeFile {
+  color: #7ee787;
+  font-weight: 500;
+}
+
+.gitMetaBadge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #8b949e;
+}
+
+.branchIcon {
+  color: #f0883e;
+}
+
+.branchName {
+  color: #c9d1d9;
+  font-weight: 500;
+}
+
+.dividerDot {
+  color: #484f58;
+}
+
+.syncButton {
+  background: transparent;
+  border: none;
+  color: #8b949e;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-family: inherit;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.syncButton:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #58a6ff;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid #30363d;
+}
+
+.headerContent {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  background: rgba(255, 45, 32, 0.1);
+  border: 1px solid rgba(255, 45, 32, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff2d20;
+  flex-shrink: 0;
+}
+
+.headerText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.name {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-color, #ffffff);
+  letter-spacing: -0.02em;
+}
+
+.role {
+  margin: 0;
+  font-size: 14.5px;
+  color: #58a6ff;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #8b949e;
+  margin-top: 4px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: #3fb950;
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.headerActions {
+  display: flex;
+  gap: 8px;
+}
+
+.iconButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  color: #8b949e;
+  background: #161b22;
+  border: 1px solid #30363d;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.iconButton:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: #8b949e;
+  transform: translateY(-2px);
+}
+
+/* Interactive PHP Code Widget Container */
+.codeWidgetContainer {
+  width: 100%;
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: left;
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, monospace;
+  font-size: 12.5px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  margin-bottom: 40px;
+}
+
+.codeWidgetHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 14px;
+  background: #161b22;
+  border-bottom: 1px solid #30363d;
+}
+
+.widgetTitleGroup {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dotRed, .dotYellow, .dotGreen {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.dotRed { background: #ff5f56; }
+.dotYellow { background: #ffbd2e; }
+.dotGreen { background: #27c93f; }
+
+.widgetTitle {
+  margin-left: 6px;
+  font-size: 11.5px;
+  color: #8b949e;
+}
+
+.widgetActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.commitTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: #8b949e;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.copyButton {
+  background: transparent;
+  border: none;
+  color: #c9d1d9;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.copyButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.configControlsBar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  background: rgba(22, 27, 34, 0.6);
+  border-bottom: 1px solid #30363d;
+  font-size: 11.5px;
+}
+
+.controlsLabel {
+  color: #8b949e;
+}
+
+.configToggleBtn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #30363d;
+  color: #c9d1d9;
+  padding: 2px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 11px;
+  transition: all 0.2s;
+}
+
+.configToggleBtn:hover {
+  background: rgba(255, 45, 32, 0.15);
+  border-color: rgba(255, 45, 32, 0.4);
+  color: #ffffff;
+}
+
+.highlightVal {
+  color: #7ee787;
+  font-weight: 600;
+}
+
+.codeBlock {
+  margin: 0;
+  padding: 16px;
+  overflow-x: auto;
+  color: #e6edf3;
+  line-height: 1.6;
+}
+
+/* Content Sections */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.section {
+  position: relative;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.sectionNumber {
+  font-family: var(--font-mono, monospace);
+  font-size: 12.5px;
+  color: #ff2d20;
+  font-weight: 500;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-color, #ffffff);
+  letter-spacing: -0.01em;
+}
+
+.sectionBody {
+  padding-left: 28px;
+}
+
+.paragraph {
+  margin: 0 0 14px 0;
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.paragraph:last-child {
+  margin-bottom: 0;
+}
+
+/* Experience Cards */
+.experienceCard {
+  padding: 20px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.experienceCard:hover {
+  border-color: #8b949e;
+}
+
+.expMeta {
+  margin-bottom: 6px;
+}
+
+.expPeriod {
+  display: inline-block;
+  padding: 2px 8px;
+  background: rgba(255, 45, 32, 0.1);
+  color: #ff2d20;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 4px;
+  font-family: var(--font-mono, monospace);
+}
+
+.expRole {
+  margin: 0 0 4px 0;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-color, #ffffff);
+}
+
+.expCompany {
+  margin: 0 0 12px 0;
+  font-size: 13.5px;
+  color: #8b949e;
+}
+
+.expList {
+  margin: 0;
+  padding-left: 18px;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.expList li {
+  margin-bottom: 6px;
+  line-height: 1.5;
+  font-size: 13.5px;
+}
+
+/* Skills Grid */
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.skillCategory {
+  padding: 16px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+}
+
+.skillTitle {
+  margin: 0 0 10px 0;
+  font-size: 11.5px;
+  color: #8b949e;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.skillTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.skillTag {
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid #30363d;
+  border-radius: 4px;
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.15s ease;
+}
+
+.skillTag:hover {
+  background: rgba(255, 45, 32, 0.1);
+  border-color: rgba(255, 45, 32, 0.3);
+  color: #ff2d20;
+}
+
+/* Footer */
+.footer {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid #30363d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footerLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #58a6ff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.footerLink:hover {
+  gap: 12px;
+}
+
+.githubGreenButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #238636;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid rgba(27, 31, 36, 0.15);
+  box-shadow: 0 1px 0 rgba(27, 31, 36, 0.1);
+  transition: all 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+}
+
+.githubGreenButton:hover {
+  background-color: #2ea043;
+  border-color: rgba(27, 31, 36, 0.15);
+  box-shadow: 0 4px 12px rgba(35, 134, 54, 0.4);
+  transform: translateY(-1px);
+}
+
+.githubGreenButton .arrow {
+  transition: transform 0.2s ease;
+}
+
+.githubGreenButton:hover .arrow {
+  transform: translateX(3px);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .container {
+    padding: 24px 16px;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .headerActions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .skillsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .sectionBody {
+    padding-left: 0;
+  }
+
+  .ideTopBar {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+}
+
+
+/* Additional Styles for Interactive Config Workspace */
+
+.formatSwitchers {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.formatBtn {
+  background: transparent;
+  border: 1px solid #30363d;
+  color: #8b949e;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.formatBtn:hover {
+  color: #c9d1d9;
+  border-color: #8b949e;
+}
+
+.activeFormatBtn {
+  background: rgba(255, 45, 32, 0.15);
+  border-color: rgba(255, 45, 32, 0.4);
+  color: #ff2d20;
+  font-weight: 600;
+}
+
+.interactiveFlags {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.artisanBtn {
+  background: #238636;
+  border: none;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-family: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: background 0.2s;
+}
+
+.artisanBtn:hover {
+  background: #2ea043;
+}
+
+.commitTagButton {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #30363d;
+  color: #8b949e;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-family: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s;
+}
+
+.commitTagButton:hover {
+  color: #ffffff;
+  border-color: #8b949e;
+}
+
+/* Integrated Terminal Box */
+.terminalDrawer {
+  background: #090d13;
+  border-top: 1px solid #30363d;
+  padding: 10px 14px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11.5px;
+}
+
+.terminalHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #8b949e;
+  margin-bottom: 6px;
+  font-size: 11px;
+}
+
+.terminalBody {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  max-height: 90px;
+  overflow-y: auto;
+}
+
+.terminalLine.info { color: #8b949e; }
+.terminalLine.cmd { color: #79c0ff; }
+.terminalLine.success { color: #3fb950; }
+
+/* Git Diff Modal */
+.modalOverlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  backdrop-filter: blur(4px);
+}
+
+.diffModal {
+  width: 100%;
+  max-width: 540px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 16px 32px rgba(0,0,0,0.6);
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #30363d;
+  background: #0d1117;
+}
+
+.modalHeader h3 {
+  margin: 0;
+  font-size: 14px;
+  color: #c9d1d9;
+}
+
+.closeBtn {
+  background: transparent;
+  border: none;
+  color: #8b949e;
+  cursor: pointer;
+}
+
+.closeBtn:hover {
+  color: #ffffff;
+}
+
+.diffBody {
+  padding: 16px;
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+}
+
+.commitMsg {
+  margin: 0 0 8px 0;
+  color: #8b949e;
+  font-size: 12px;
+}
+
+.diffBlock {
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 12px;
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.diffRemoved { color: #ff7b72; background: rgba(255, 123, 114, 0.1); padding: 2px 4px; }
+.diffAdded { color: #7ee787; background: rgba(126, 231, 135, 0.1); padding: 2px 4px; }
+
+@media (max-width: 768px) {
+  .configControlsBar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .interactiveFlags {
+    margin-left: 0;
+  }
+}
+
+/* Markdown & Constants Box Styling */
+.markdownBox {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 16px;
+}
+
+.mdHeader {
+  font-family: var(--font-mono, monospace);
+  font-size: 11.5px;
+  color: #8b949e;
+  border-bottom: 1px solid #30363d;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+
+.subHint {
+  font-family: var(--font-mono, monospace);
+  font-size: 11.5px;
+  color: #8b949e;
+  margin-bottom: 12px;
+}
+
+.constantsBox {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 16px;
+  font-family: var(--font-mono, monospace);
+  font-size: 13px;
+  color: #e6edf3;
+  line-height: 1.6;
+}
+
+.constKey { color: #ff7b72; }
+.constName { color: #79c0ff; }
+.constStr { color: #98c379; }
+
+/* Terminal Quick Action Buttons */
+.terminalQuickActions {
+  display: flex;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.terminalQuickActions button {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #30363d;
+  color: #8b949e;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 10.5px;
+  font-family: var(--font-mono, monospace);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.terminalQuickActions button:hover {
+  background: rgba(88, 166, 253, 0.15);
+  border-color: rgba(88, 166, 253, 0.4);
+  color: #58a6ff;
+}
+
+/* Eloquent ORM Query Console Box */
+.ormBox {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 16px;
+  font-family: var(--font-mono, monospace);
+}
+
+.ormHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #8b949e;
+  font-size: 11.5px;
+  border-bottom: 1px solid #30363d;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+
+.ormButtons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.ormButtons button {
+  background: rgba(255, 45, 32, 0.1);
+  border: 1px solid rgba(255, 45, 32, 0.3);
+  color: #ff2d20;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 11.5px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ormButtons button:hover {
+  background: rgba(255, 45, 32, 0.2);
+  border-color: rgba(255, 45, 32, 0.5);
+  color: #ffffff;
+}
+
+.ormCodeBox {
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 4px;
+  padding: 8px 12px;
+  color: #79c0ff;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.ormResultBox {
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 4px;
+  padding: 10px 12px;
+  color: #7ee787;
+  font-size: 12px;
+  margin: 0;
+  overflow-x: auto;
+  line-height: 1.5;
+}
+
+/* Clickable Skill Category Cards */
+.skillCategory {
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.skillCategory:hover {
+  border-color: #ff2d20 !important;
+  background: rgba(255, 45, 32, 0.03) !important;
+  transform: translateY(-2px);
+}

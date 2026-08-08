@@ -1,0 +1,626 @@
+/* Home Page - Interactive Git + GitHub VS Code PortIDE Theme */
+
+.page {
+  width: 100%;
+  height: 100%;
+  background: var(--main-bg, #0d1117);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  position: relative;
+  overflow-y: auto;
+}
+
+.page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(56, 139, 253, 0.04) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
+  z-index: 1;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+}
+
+/* IDE Top Bar / Git Breadcrumbs */
+.ideTopBar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #161b22;
+  border: 1px solid #30363d;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+}
+
+.workspaceBreadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #8b949e;
+}
+
+.folderRoot {
+  color: #58a6ff;
+  font-weight: 600;
+}
+
+.folderSub {
+  color: #c9d1d9;
+}
+
+.separator {
+  color: #484f58;
+}
+
+.activeFile {
+  color: #7ee787;
+  font-weight: 500;
+}
+
+.gitMetaBadge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #8b949e;
+}
+
+.branchIcon {
+  color: #f0883e;
+}
+
+.branchName {
+  color: #c9d1d9;
+  font-weight: 500;
+}
+
+.dividerDot {
+  color: #484f58;
+}
+
+.syncButton {
+  background: transparent;
+  border: none;
+  color: #8b949e;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-family: inherit;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.syncButton:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #58a6ff;
+}
+
+/* Header & Badges */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 250px;
+}
+
+.iconWrapper {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  background: rgba(88, 166, 255, 0.1);
+  border: 1px solid rgba(88, 166, 255, 0.2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.codeIcon {
+  color: #58a6ff;
+}
+
+.pulseRing {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border: 1px solid rgba(88, 166, 255, 0.4);
+  border-radius: 14px;
+  animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.06); opacity: 0.2; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+.badgeContainer {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  overflow: visible; 
+  padding-top: 4px;
+}
+
+.statusBadge, .techPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.statusBadge {
+  background: rgba(63, 185, 80, 0.1);
+  color: #3fb950;
+  border: 1px solid rgba(63, 185, 80, 0.2);
+}
+
+.statusCheck {
+  color: #3fb950;
+}
+
+.techPill {
+  background: rgba(186, 104, 200, 0.1);
+  color: #ce93d8;
+  border: 1px solid rgba(186, 104, 200, 0.2);
+}
+
+/* Intro Section */
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.greeting {
+  margin: 0;
+  font-size: 12px;
+  color: #8b949e;
+  font-family: var(--font-mono, monospace);
+  letter-spacing: 0.5px;
+}
+
+.name {
+  margin: 0;
+  font-size: 52px;
+  font-weight: 700;
+  color: var(--text-color, #ffffff);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.roleContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.terminalIcon {
+  color: #58a6ff;
+}
+
+.role {
+  margin: 0;
+  font-size: 16px;
+  color: #58a6ff;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #58a6ff,
+    transparent
+  );
+  margin: 4px 0;
+  opacity: 0.6;
+}
+
+/* Interactive Code Widget */
+.codeWidgetContainer {
+  width: 100%;
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: left;
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, monospace;
+  font-size: 12.5px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  margin: 4px 0;
+}
+
+.codeWidgetHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: #161b22;
+  border-bottom: 1px solid #30363d;
+}
+
+.widgetTitleGroup {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dotRed, .dotYellow, .dotGreen {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.dotRed { background: #ff5f56; }
+.dotYellow { background: #ffbd2e; }
+.dotGreen { background: #27c93f; }
+
+.widgetTitle {
+  margin-left: 6px;
+  font-size: 11.5px;
+  color: #8b949e;
+}
+
+.widgetActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.commitTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: #8b949e;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.copyButton {
+  background: transparent;
+  border: none;
+  color: #c9d1d9;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.copyButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.codeBlock {
+  margin: 0;
+  padding: 14px 16px;
+  overflow-x: auto;
+  color: #e6edf3;
+  line-height: 1.6;
+}
+
+.description {
+  margin: 4px 0 0 0;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 640px;
+}
+
+.highlightText {
+  color: #58a6ff;
+  font-weight: 500;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.primaryAction,
+.secondaryAction {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.primaryAction {
+  background: #238636;
+  color: white;
+  box-shadow: 0 4px 20px rgba(35, 134, 54, 0.3);
+}
+
+.primaryAction:hover {
+  background: #2ea043;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(35, 134, 54, 0.4);
+}
+
+.secondaryAction {
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.85);
+  border: 1px solid #30363d;
+}
+
+.secondaryAction:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: #8b949e;
+  transform: translateY(-2px);
+}
+
+/* Links */
+.links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 8px;
+  padding-top: 24px;
+  border-top: 1px solid #30363d;
+  width: 100%;
+  justify-content: center;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #8b949e;
+  font-size: 13px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+.link:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.linkSeparator {
+  color: #30363d;
+  font-size: 12px;
+}
+
+/* Spin animation for sync button */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .page {
+    padding: 24px 16px;
+  }
+
+  .name {
+    font-size: 38px;
+  }
+
+  .role {
+    font-size: 15px;
+  }
+
+  .ideTopBar {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .primaryAction,
+  .secondaryAction {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+/* VS Code Style File Tabs Inside the Widget */
+.fileTabsBar {
+  display: flex;
+  background: #161b22;
+  border-bottom: 1px solid #30363d;
+  overflow-x: auto;
+}
+
+.fileTab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  border-right: 1px solid #30363d;
+  padding: 8px 14px;
+  color: #8b949e;
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.fileTab:hover {
+  color: #c9d1d9;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.fileTab.activeTab {
+  background: #0d1117;
+  color: #ffffff;
+  border-top: 2px solid #58a6ff;
+  font-weight: 500;
+}
+
+.commitMessage {
+  font-size: 11.5px;
+  color: #8b949e;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 320px;
+}
+
+@media (max-width: 640px) {
+  .commitMessage {
+    max-width: 180px;
+  }
+}
+
+/* VS Code & Git Top Telemetry Bar */
+.ideTopBar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #161b22;
+  border: 1px solid #30363d;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  margin-bottom: 20px; 
+}
+
+.workspaceBreadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #8b949e;
+}
+
+.folderRoot {
+  color: #58a6ff;
+  font-weight: 600;
+}
+
+.folderSub {
+  color: #c9d1d9;
+}
+
+.separator {
+  color: #484f58;
+}
+
+.activeFile {
+  color: #7ee787;
+  font-weight: 500;
+}
+
+.gitMetaBadge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #8b949e;
+}
+
+.branchIcon {
+  color: #f0883e;
+}
+
+.branchName {
+  color: #c9d1d9;
+  font-weight: 500;
+}
+
+.dividerDot {
+  color: #484f58;
+}
+
+.syncButton {
+  background: transparent;
+  border: none;
+  color: #8b949e;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-family: inherit;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.syncButton:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #58a6ff;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@media (max-width: 640px) {
+  .ideTopBar {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+}

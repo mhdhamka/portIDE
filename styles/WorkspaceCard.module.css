@@ -1,0 +1,225 @@
+/* Modern GitHub + VS Code Hybrid Project Card */
+
+.card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 0;
+  text-decoration: none;
+  position: relative;
+  transition: all 0.25s ease;
+}
+
+.card:first-child {
+  padding-top: 0;
+}
+
+.card:last-child {
+  padding-bottom: 0;
+}
+
+/* VS Code Line Number Marker */
+.number {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+
+.number span {
+  font-family: ui-monospace, monospace;
+  font-size: 11px;
+  color: #6e7681;
+  font-weight: 500;
+}
+
+.card:hover .number span {
+  color: #58a6ff;
+}
+
+/* GitHub Repository Card Frame */
+.repoContainer {
+  flex: 1;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(1, 4, 9, 0.3);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover .repoContainer {
+  border-color: #58a6ff;
+  box-shadow: 0 8px 24px rgba(88, 166, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+.imagePreviewWrapper {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  border-bottom: 1px solid #30363d;
+  overflow: hidden;
+}
+
+.projectImage {
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.card:hover .projectImage {
+  transform: scale(1.04);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 20px;
+  gap: 14px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.repoTitleGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.repoIcon {
+  color: #8b949e;
+}
+
+.title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #58a6ff;
+  font-family: ui-monospace, monospace;
+  letter-spacing: -0.2px;
+  transition: color 0.2s ease;
+}
+
+.card:hover .title {
+  text-decoration: underline;
+}
+
+.repoStats {
+  display: flex;
+  gap: 12px;
+  font-size: 11px;
+  color: #8b949e;
+  font-family: ui-monospace, monospace;
+}
+
+.statItem {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.description {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #8b949e;
+}
+
+.card:hover .description {
+  color: #c9d1d9;
+}
+
+/* GitHub Tech Stack Topic Pills */
+.tagsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.tagPill {
+  background: rgba(56, 139, 253, 0.1);
+  color: #58a6ff;
+  font-size: 11px;
+  font-family: ui-monospace, monospace;
+  padding: 2px 8px;
+  border-radius: 12px;
+  border: 1px solid rgba(56, 139, 253, 0.2);
+  transition: all 0.2s;
+}
+
+.tagPill:hover {
+  background: rgba(56, 139, 253, 0.2);
+}
+
+/* Action Footer */
+.actionFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #21262d;
+  padding-top: 12px;
+  margin-top: 4px;
+}
+
+.workspaceIndicator {
+  font-size: 10.5px;
+  font-family: ui-monospace, monospace;
+  color: #6e7681;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #c9d1d9;
+  font-weight: 500;
+  background: #21262d;
+  border: 1px solid #30363d;
+  padding: 4px 10px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.link:hover {
+  background: #30363d;
+  color: #58a6ff;
+  border-color: #58a6ff;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .card {
+    gap: 8px;
+  }
+  
+  .content {
+    padding: 12px 14px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .repoStats {
+    display: none;
+  }
+}

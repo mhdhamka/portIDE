@@ -1,0 +1,379 @@
+.terminalContainer {
+  display: flex;
+  flex-direction: column;
+  background: var(--terminal-bg, #18181b);
+  border-top: 1px solid var(--terminal-border, rgba(255, 255, 255, 0.08));
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  user-select: none;
+  position: relative;
+  width: 100%;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.4);
+  z-index: 40;
+}
+
+/* Drag to resize handle line */
+.resizeHandle {
+  height: 4px;
+  width: 100%;
+  cursor: row-resize;
+  position: absolute;
+  top: -2px;
+  left: 0;
+  z-index: 50;
+  background: transparent;
+  transition: background 0.15s ease;
+}
+
+.resizeHandle:hover {
+  background: var(--accent-color, #06b6d4);
+}
+
+.panelHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 12px;
+  height: 35px;
+  background: var(--terminal-header-bg, #121215);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--text-color, #a1a1aa);
+  font-size: 11px;
+}
+
+.panelTabs {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 16px;
+}
+
+.panelTab {
+  background: transparent;
+  border: none;
+  color: #71717a;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+  transition: color 0.15s ease;
+}
+
+.panelTab:hover {
+  color: #d4d4d8;
+}
+
+.panelTab.activeTab {
+  color: #f4f4f5;
+  font-weight: 600;
+}
+
+.panelTab.activeTab::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--accent-color, #06b6d4);
+}
+
+.badgeCount {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1px 5px;
+  border-radius: 10px;
+  font-size: 9px;
+  color: #a1a1aa;
+}
+
+.headerRightControls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+}
+
+/* Terminal Instance Tabs */
+.terminalInstanceTabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-right: 8px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 2px;
+  border-radius: 4px;
+}
+
+.instanceTab {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10.5px;
+  padding: 2px 8px;
+  background: rgba(255, 255, 255, 0.02);
+  color: #8b949e;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.instanceTab:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #e4e4e7;
+}
+
+.activeInstanceTab {
+  background: rgba(6, 182, 212, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(6, 182, 212, 0.3);
+}
+
+.closeInstanceBtn {
+  background: transparent;
+  border: none;
+  color: #8b949e;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1px;
+  border-radius: 50%;
+}
+
+.closeInstanceBtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+.shellSelectorContainer {
+  position: relative;
+}
+
+.shellSelector {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: #a1a1aa;
+  padding: 2px 6px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 4px;
+  margin-right: 6px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.shellSelector:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.shellIcon {
+  font-size: 12px;
+}
+
+/* VS Code Shell Dropdown Menu */
+.shellDropdownMenu {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  background: #18181b;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  width: 180px;
+  z-index: 100;
+  padding: 4px 0;
+}
+
+.dropdownHeader {
+  padding: 6px 12px;
+  font-size: 10px;
+  color: #71717a;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.dropdownItem {
+  padding: 8px 12px;
+  font-size: 11.5px;
+  color: #d4d4d8;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.dropdownItem:hover {
+  background: rgba(6, 182, 212, 0.15);
+  color: #38bdf8;
+}
+
+.headerBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 22px;
+  background: transparent;
+  border: none;
+  color: #a1a1aa;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+}
+
+.headerBtn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 16px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: #e4e4e7;
+  cursor: text;
+}
+
+.body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+
+.line {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.line.inputLineText {
+  color: var(--accent-color, #06b6d4);
+  font-weight: 500;
+}
+
+.line.error {
+  color: #f87171;
+}
+
+.line.success {
+  color: #4ade80;
+  font-weight: 500;
+}
+
+.inputForm {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.prompt {
+  color: var(--accent-color, #06b6d4);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #f4f4f5;
+  font-family: inherit;
+  font-size: inherit;
+  caret-color: var(--accent-color, #06b6d4);
+}
+
+.tabContentMessage {
+  color: #a1a1aa;
+  font-style: italic;
+  padding: 8px 0;
+}
+
+.portRow {
+  display: flex;
+  gap: 24px;
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  color: #d4d4d8;
+}
+
+.portRow:first-child {
+  font-weight: 600;
+  color: #71717a;
+}
+
+@media screen and (max-width: 600px) {
+  .panelTabs {
+    gap: 8px;
+  }
+  .panelTab {
+    font-size: 10px;
+  }
+}
+
+.splitGridContainer {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  background: var(--terminal-bg, #18181b);
+}
+
+.splitPane {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  height: 100%;
+  position: relative;
+  opacity: 0.85;
+  transition: opacity 0.15s ease;
+}
+
+.splitPane.activeSplitPane {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.01);
+}
+
+.paneStatusBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 8px;
+  background: rgba(0, 0, 0, 0.2);
+  font-size: 10.5px;
+  color: #8b949e;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.paneTitle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.closePaneBtn {
+  background: transparent;
+  border: none;
+  color: #8b949e;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 3px;
+}
+
+.closePaneBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}

@@ -1,0 +1,111 @@
+.tabsContainer {
+  background: var(--tabs-bg, #161b22);
+  border-bottom: 1px solid var(--explorer-border, #30363d);
+  display: flex;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+  user-select: none;
+}
+
+.tabs {
+  display: flex;
+  background: var(--tabs-bg, #161b22);
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb-bg) transparent;
+  width: 100%;
+}
+
+.tabs::-webkit-scrollbar {
+  height: 3px;
+}
+
+.tabs::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tabs::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-bg, #30363d);
+  border-radius: 2px;
+}
+
+.tabWrapper {
+  border-right: 1px solid var(--explorer-border, #30363d);
+  background: var(--tab-bg, #161b22);
+  cursor: pointer;
+  transition: background 0.15s ease, border-top 0.15s ease;
+  border-top: 2px solid transparent;
+}
+
+.tabWrapper:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.activeTabWrapper {
+  background: var(--tab-active-bg, #0d1117) !important;
+  border-top: 2px solid var(--accent-color, #2f81f7) !important;
+}
+
+.tabContent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-family: ui-monospace, monospace;
+  color: var(--text-color, #e6edf3);
+}
+
+.tabIcon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.tabFilename {
+  opacity: 0.8;
+  transition: opacity 0.15s ease;
+}
+
+.activeTabWrapper .tabFilename {
+  opacity: 1;
+  font-weight: 500;
+}
+
+.closeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--text-color, #e6edf3);
+  cursor: pointer;
+  padding: 2px;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.15s ease, background 0.15s ease;
+}
+
+.tabWrapper:hover .closeBtn,
+.activeTabWrapper .closeBtn {
+  opacity: 0.7;
+}
+
+.closeBtn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  opacity: 1 !important;
+}
+
+@media screen and (max-width: 900px) {
+  .tabsContainer {
+    width: 78vw;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .tabsContainer {
+    width: 89.5vw;
+  }
+}

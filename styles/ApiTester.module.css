@@ -1,0 +1,116 @@
+.testerWrapper {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 32px 0;
+  box-shadow: 0 16px 40px rgba(1, 4, 9, 0.7);
+  font-family: ui-monospace, monospace;
+}
+
+.testerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: #0d1117;
+  border-bottom: 1px solid #30363d;
+}
+
+.titleGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #e6edf3;
+}
+
+.requestBar {
+  display: flex;
+  gap: 10px;
+  padding: 16px;
+  background: #0d1117;
+  border-bottom: 1px solid #30363d;
+}
+
+.methodBadge {
+  background: rgba(46, 160, 67, 0.2);
+  color: #3fb950;
+  border: 1px solid rgba(46, 160, 67, 0.4);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.endpointSelect {
+  flex: 1;
+  background: #161b22;
+  border: 1px solid #30363d;
+  color: #e6edf3;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-family: ui-monospace, monospace;
+  outline: none;
+}
+
+.endpointSelect:focus {
+  border-color: #58a6ff;
+}
+
+.sendBtn {
+  background: #1f6feb;
+  color: #ffffff;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-family: ui-monospace, monospace;
+  transition: background 0.2s;
+}
+
+.sendBtn:hover {
+  background: #388bfd;
+}
+
+.responsePane {
+  background: #0d1117;
+  padding: 16px;
+}
+
+.responseHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: #8b949e;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #30363d;
+  padding-bottom: 6px;
+}
+
+.statusTag {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #3fb950;
+}
+
+.jsonOutput {
+  background: #11161d;
+  border: 1px solid #30363d;
+  padding: 14px;
+  border-radius: 8px;
+  color: #7ee787;
+  font-size: 12px;
+  overflow-x: auto;
+  font-family: ui-monospace, monospace;
+  margin: 0;
+}

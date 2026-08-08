@@ -1,0 +1,179 @@
+.layout {
+  max-width: 900px;
+  margin: 0 auto;
+  height: 100%;
+  padding-bottom: 100px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.container > * {
+  flex: 1;
+  max-width: 1200px;
+}
+
+.container h1 {
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+
+.flex {
+  display: flex;
+  gap: 1rem;
+}
+
+.pageTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  margin-bottom: 1rem;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  text-align: center;
+  padding-top: 3rem;
+}
+
+.pageSubtitle {
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 3rem;
+  max-width: 600px;
+  line-height: 1.6;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- VS Code & Git Top Telemetry Bar --- */
+.ideTopBar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #161b22;
+  border: 1px solid #30363d;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  margin-bottom: 16px;
+}
+
+.workspaceBreadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #8b949e;
+}
+
+.folderRoot {
+  color: #f7df1e;
+  font-weight: 600;
+}
+
+.folderSub {
+  color: #c9d1d9;
+}
+
+.separator {
+  color: #484f58;
+}
+
+.activeFile {
+  color: #7ee787;
+  font-weight: 500;
+}
+
+.gitMetaBadge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #8b949e;
+}
+
+.branchIcon {
+  color: #f0883e;
+}
+
+.branchName {
+  color: #c9d1d9;
+  font-weight: 500;
+}
+
+.dividerDot {
+  color: #484f58;
+}
+
+.syncButton {
+  background: transparent;
+  border: none;
+  color: #8b949e;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-family: inherit;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.syncButton:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #58a6ff;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@media screen and (max-width: 1200px) {
+  .container {
+    display: block;
+    padding: 2rem 1rem;
+  }
+
+  .container > div:first-child {
+    border-right: none;
+    margin-bottom: 2rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .flex {
+    display: block;
+  }
+
+  .form input {
+    font-size: 0.85rem;
+  }
+
+  .container {
+    padding: 1.5rem 0.75rem;
+  }
+
+  .pageTitle {
+    font-size: 1.75rem;
+  }
+
+  .pageSubtitle {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .ideTopBar {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+}

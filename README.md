@@ -7,7 +7,7 @@
 [Live Demo](https://localhost:3000) · [Report Bug](https://github.com/mhdhamka/portIDE/issues) · [Request Feature](https://github.com/mhdhamka/portIDE/issues)
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Next.js](https://img.shields.io/badge/Next.js-15.x-black?logo=next.js)
+![Next.js](https://img.shields.io/badge/Next.js-16.x-black?logo=next.js)
 ![Turbopack](https://img.shields.io/badge/Bundler-Turbopack-cc0000)
 ![Theme](https://img.shields.io/badge/UI-VS%20Code%20Dark-007acc?logo=visualstudiocode)
 

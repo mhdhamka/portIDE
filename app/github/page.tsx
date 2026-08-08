@@ -54,7 +54,7 @@ export default function GithubPage() {
             <div className={styles.mdTitleSection}>
               <h1 className={styles.mdHeading}>🚀 portIDE v2.5 — Interactive Workspace Portfolio</h1>
               <p className={styles.mdSubtitle}>
-                An immersive developer portfolio built with Next.js 15 and Turbopack, emulating a full VS Code and multi-IDE workspace.
+                An immersive developer portfolio built with Next.js 16 and Turbopack, emulating a full VS Code and multi-IDE workspace.
               </p>
             </div>
 
@@ -90,7 +90,7 @@ export default function GithubPage() {
               <h3 className={styles.mdSubHeading}><VscLayers size={16} /> Built With Modern Tech Stack</h3>
               <div className={styles.techGrid}>
                 <div className={styles.techCard}>
-                  <span className={styles.techName}>Next.js 15 / App Router</span>
+                  <span className={styles.techName}>Next.js 16 / App Router</span>
                   <span className={styles.techRole}>Client/Server Hybrid Architecture</span>
                 </div>
                 <div className={styles.techCard}>
@@ -142,7 +142,7 @@ export default function GithubPage() {
               <pre className={styles.previewCode}>
                 <code>{`const workspace = {
   author: "mdhamka",
-  framework: "Next.js 15",
+  framework: "Next.js 16",
   bundler: "Turbopack",
   status: "Operational"
 };`}</code>

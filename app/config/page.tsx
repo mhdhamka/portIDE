@@ -158,7 +158,7 @@ return [
             </div>
             <div className={styles.headerText}>
               <h1 className={styles.name}>Mohd Hamka</h1>
-              <p className={styles.role}>Full-Stack Developer & Cybersecurity Enthusiast</p>
+              <p className={styles.role}>Full-Stack Developer | AI & Cybersecurity Enthusiast</p>
               <div className={styles.location}>
                 <span className={styles.dot} />
                 Kuching, Sarawak, Malaysia

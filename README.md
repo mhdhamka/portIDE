@@ -17,7 +17,7 @@
 
 ## Overview
 
-**portIDE** breaks away from static, cookie-cutter portfolios. Built using Next.js 15, Turbopack, and CSS Modules, it functions as an interactive developer workspace. Visitors can experience a true-to-life IDE interface complete with a sidebar file explorer, active editor tabs, live code playgrounds, an AI-native composer agent, and real-time GitHub repository synchronization.
+**portIDE** breaks away from static, cookie-cutter portfolios. Built using Next.js 16, Turbopack, and CSS Modules, it functions as an interactive developer workspace. Visitors can experience a true-to-life IDE interface complete with a sidebar file explorer, active editor tabs, live code playgrounds, an AI-native composer agent, and real-time GitHub repository synchronization.
 
 ---
 
@@ -46,7 +46,7 @@
 
 ## Tech Stack
 
-* **Framework:** Next.js 15 (App Router)
+* **Framework:** Next.js 16 (App Router)
 * **Bundler & Compiler:** Turbopack
 * **Styling:** CSS Modules (Scoped Styling & Dark Mode Themes)
 * **Animations:** Framer Motion

@@ -10,7 +10,7 @@ const CODE_STEPS = [
   { line: 1, code: 'async function initializePortIDEWorkspace() {', vars: { state: 'booting' } },
   { line: 2, code: '  const profile = await loadDeveloperProfile("Mohd Hamka");', vars: { name: 'Mohd Hamka', degree: 'B.Sc Software Engineer (UNIMAS)' } },
   { line: 3, code: '  const repos = await fetchUserRepositories("mhdhamka");', vars: { activeRepos: 14, primaryLanguage: 'TypeScript' } },
-  { line: 4, code: '  const telemetry = { status: "Online", verified: true };', vars: { telemetry: telemetryData, runtime: 'Next.js 15' } },
+  { line: 4, code: '  const telemetry = { status: "Online", verified: true };', vars: { telemetry: telemetryData, runtime: 'Next.js 16' } },
   { line: 5, code: '  return { profile, repos, telemetry, ready: true };', vars: { execution: 'success', status: 'Workspace Rendered' } },
 ];
 

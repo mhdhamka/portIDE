@@ -61,7 +61,7 @@ export default function ProjectsPage() {
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
   const [commandInput, setCommandInput] = useState('');
   const [terminalLogs, setTerminalLogs] = useState<string[]>([
-    '[12:00:01 AM] [Turbopack] Initializing Next.js 15 App Router...',
+    '[12:00:01 AM] [Turbopack] Initializing Next.js 16 App Router...',
     '[12:00:02 AM] [portIDE] Workspace loaded successfully for mhdhamka.',
     '[12:00:02 AM] [Git] Repository sync status: up to date with origin/main.',
     '[12:00:03 AM] [Copilot] AI Assistant models indexed and ready.'

@@ -167,7 +167,7 @@ const Titlebar = ({ onOpenCommandPalette, onToggleSidebar, onTogglePanel, onTogg
       <div className={styles.windowButtons}>
         <span className={styles.minimize} title="Minimize" onClick={() => alert('Window minimized!')} />
         <span className={styles.maximize} title="Maximize" onClick={() => alert('Fullscreen toggled!')} />
-        <span className={styles.close} title="Close" onClick={() => alert("Can't close portfolio! You're stuck here admiring the code 😉")} />
+        <span className={styles.close} title="Close" onClick={() => alert("Can't close portfolio! You're stuck here admiring the code!!")} />
       </div>
     </section>
   );

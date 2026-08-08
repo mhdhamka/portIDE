@@ -5,16 +5,16 @@ import { usePathname, useRouter } from 'next/navigation';
 import {
   VscAccount,
   VscSettings,
-  VscMail,
-  VscGithubAlt,
+  VscJson,
   VscCode,
   VscFiles,
-  VscEdit,
   VscSourceControl,
   VscSearch,
   VscExtensions,
   VscCopilot,
   VscSync,
+  VscGithubAlt,
+  VscServer,
 } from 'react-icons/vsc';
 import { useTabs } from '@/context/TabsContext';
 
@@ -64,10 +64,10 @@ const Sidebar = ({
     { Icon: VscSearch, path: '/search', label: 'Search (Ctrl+Shift+F)', badge: null, isSearchAction: true },
     { Icon: VscSourceControl, path: '/source-control', label: 'Source Control', badge: badges['/source-control'], isScmAction: true }, 
     { Icon: VscCode, path: '/workspace', label: 'workspace.tsx', badge: null },
-    { Icon: VscEdit, path: '/changelog', label: 'changelog.json', badge: null },
-    { Icon: VscMail, path: '/endpoint', label: 'endpoint.js', badge: badges['/endpoint'] },
+    { Icon: VscJson, path: '/changelog', label: 'changelog.json', badge: null },
+    { Icon: VscServer, path: '/endpoint', label: 'endpoint.js', badge: badges['/endpoint'] },
     { Icon: VscExtensions, path: '/extensions', label: 'Extensions', badge: '1' },
-    { Icon: VscGithubAlt, path: '/github', label: 'gitHub.md', badge: null },
+    { Icon: VscGithubAlt, path: '/github', label: 'github.md', badge: null },
     { Icon: VscCopilot, path: '/chat', label: 'AI Copilot', badge: null, isCopilotAction: true },    
   ];
 

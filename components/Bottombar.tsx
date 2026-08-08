@@ -92,7 +92,7 @@ const Bottombar = ({ onTerminalToggle, isTerminalOpen, onCopilotToggle, isCopilo
           title="Next.js App Router Runtime"
         >
           <SiNextdotjs className={`${styles.icon} ${styles.nextIcon}`} />
-          <span className={styles.text}>Next.js 15</span>
+          <span className={styles.text}>Next.js 16</span>
           <span className={styles.livePulse} />
         </div>
 

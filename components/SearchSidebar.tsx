@@ -107,7 +107,7 @@ export default function SearchSidebar() {
       icon: '/logos/github_icon.svg',
       content: [
         '# portIDE — VS Code-Powered Next.js Portfolio',
-        'Built using Next.js 15, portIDE search, and CSS Modules.',
+        'Built using Next.js 16, portIDE search, and CSS Modules.',
         'Developed & maintained by mdhamka.'
       ]
     }

@@ -1,6 +1,6 @@
 <div align="center">
 
-# ⚡ portIDE: Visual Studio Code Next.js Interactive Portfolio Workspace
+# portIDE: Visual Studio Code Next.js Interactive Portfolio Workspace
 
 **An immersive, production-grade developer portfolio platform designed precisely to emulate a fully functional Visual Studio Code and multi-IDE workspace environment.**
 

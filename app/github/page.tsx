@@ -15,7 +15,7 @@ import {
   VscCopy,
   VscSparkle,
   VscSourceControl,
-  VscKanban,
+  VscListTree,
   VscFlame,
   VscPreview
 } from 'react-icons/vsc';
@@ -52,7 +52,7 @@ export default function GithubPage() {
           <div className={styles.readmeBody}>
             
             <div className={styles.mdTitleSection}>
-              <h1 className={styles.mdHeading}>🚀 portIDE v2.5 — Interactive Workspace Portfolio</h1>
+              <h1 className={styles.mdHeading}>portIDE v2.5 — Interactive Workspace Portfolio</h1>
               <p className={styles.mdSubtitle}>
                 An immersive developer portfolio built with Next.js 16 and Turbopack, emulating a full VS Code and multi-IDE workspace.
               </p>

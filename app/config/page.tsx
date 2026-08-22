@@ -13,15 +13,17 @@ import {
   VscCopy,
   VscFileCode,
   VscTerminal,
-  VscCheck,
   VscHistory,
   VscClose,
-  VscShield,
-  VscServer,
   VscDatabase
 } from 'react-icons/vsc';
 
 import styles from '@/styles/Config.module.css';
+
+interface PackageItem {
+  name: string;
+  desc: string;
+}
 
 export default function DeveloperConfigPage() {
   const [copied, setCopied] = useState(false);
@@ -31,7 +33,7 @@ export default function DeveloperConfigPage() {
   const [activeFormat, setActiveFormat] = useState('php'); // 'php' | 'json' | 'yaml'
   
   // Terminal state
-  const [terminalLogs, setTerminalLogs] = useState([
+  const [terminalLogs, setTerminalLogs] = useState<Array<{ type: string; text: string }>>([
     { type: 'info', text: 'portIDE v2.5 kernel initialized.' },
     { type: 'success', text: 'Ready. Type or click actions below to test configuration.' }
   ]);
@@ -41,14 +43,14 @@ export default function DeveloperConfigPage() {
   const [showDiffDrawer, setShowDiffDrawer] = useState(false);
 
   // Interactive Package Inspector Modal / State
-  const [selectedPackage, setSelectedPackage] = useState(null);
+  const [selectedPackage, setSelectedPackage] = useState<PackageItem | null>(null);
 
   // Interactive Eloquent ORM Query Builder State
   const [ormQuery, setOrmQuery] = useState("Developer::where('stack', 'Laravel')->first()");
-  const [ormResult, setOrmResult] = useState('{\n  "status": 200,\n  "data": {\n    "name": "Mohd Hamka",\n    "degree": "CS @ UNIMAS",\n    "status": "Available for Hire"\n  }\n}');
+  const [ormResult, setOrmResult] = useState('{\n  "status": 200,\n  "data": {\n    "name": "Mohd Hamka",\n    "degree": "Software Engineering @ UNIMAS",\n    "status": "Available for Hire"\n  }\n}');
 
-  // Formatted Snippets
-  const snippets = {
+  // Formatted Snippets with index signature
+  const snippets: Record<string, string> = {
     php: `<?php
 return [
     'app_env' => '${appEnv}',
@@ -104,7 +106,7 @@ return [
     }, 800);
   };
 
-  const runArtisanCommand = (cmd) => {
+  const runArtisanCommand = (cmd: string) => {
     setTerminalLogs(prev => [...prev, { type: 'cmd', text: cmd }]);
     setTimeout(() => {
       let output = '[OK] Command executed successfully.';
@@ -116,7 +118,7 @@ return [
     }, 600);
   };
 
-  const handleQuerySelect = (query, result) => {
+  const handleQuerySelect = (query: string, result: string) => {
     setOrmQuery(query);
     setOrmResult(result);
   };

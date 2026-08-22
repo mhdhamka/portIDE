@@ -1,7 +1,6 @@
-
 'use client';
 
-import { useState } from 'react';
+import { useState, JSX } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -24,8 +23,16 @@ import {
 
 import styles from '@/styles/Overview.module.css';
 
-// Interactive workspace files mapping
-const workspaceFiles = {
+interface WorkspaceFile {
+  icon: JSX.Element;
+  language: string;
+  commit: string;
+  message: string;
+  code: string;
+}
+
+// Interactive workspace files mapping with explicit index typing
+const workspaceFiles: Record<string, WorkspaceFile> = {
   'overview.jsx': {
     icon: <VscFileCode size={14} color="#61afef" />,
     language: 'javascript',

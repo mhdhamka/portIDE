@@ -97,16 +97,16 @@ export default function AiCopilotSidebar({ onClose }: AiCopilotSidebarProps) {
       {messages.length === 1 && (
         <div className={styles.quickPrompts}>
           <button onClick={() => handleSendMessage("How do I navigate portIDE and its files?")}>
-            <span>🧭</span> How do I navigate portIDE?
+            <span></span> How do I navigate portIDE?
           </button>
           <button onClick={() => handleSendMessage("Tell me about Hamka's background.")}>
-            <span>✨</span> Tell me about Hamka?
+            <span></span> Tell me about Hamka?
           </button>
           <button onClick={() => handleSendMessage("What can I do in workspace.tsx?")}>
-            <span>🚀</span> What is in workspace.tsx?
+            <span></span> What is in workspace.tsx?
           </button>
           <button onClick={() => handleSendMessage("How can I contact Hamka?")}>
-            <span>📬</span> How can I contact him?
+            <span></span> How can I contact him?
           </button>
         </div>
       )}

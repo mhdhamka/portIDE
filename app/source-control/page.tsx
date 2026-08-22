@@ -421,8 +421,8 @@ export default function SourceControlPage() {
                       <span className={styles.commitHash}>{commit.id}</span>
                     </div>
                     <div className={styles.commitMeta}>
-                      <span>👤 {commit.author}</span>
-                      <span>🕒 {commit.date}</span>
+                      <span> {commit.author}</span>
+                      <span> {commit.date}</span>
                     </div>
                   </div>
                 </div>

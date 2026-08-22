@@ -4,7 +4,14 @@ import { useState } from 'react';
 import { VscCopy, VscCheckAll, VscTerminal, VscSend } from 'react-icons/vsc';
 import styles from '@/styles/EndpointCode.module.css';
 
-const contactEndpoints = [
+interface EndpointItem {
+  key: string;
+  label: string;
+  val: string;
+  type: string;
+}
+
+const contactEndpoints: EndpointItem[] = [
   { key: 'website', label: 'portIDE.site', val: 'https://mhdhamka.dev', type: 'GET' },
   { key: 'email', label: 'mhdhamka@gmail.com', val: 'mailto:m.hamka017@gmail.com', type: 'POST' },
   { key: 'github', label: 'mhdhamka', val: 'https://github.com/mhdhamka', type: 'GET' },
@@ -14,7 +21,7 @@ const contactEndpoints = [
 export default function EndpointCode() {
   const [copied, setCopied] = useState(false);
   const [responseLog, setResponseLog] = useState('// Click any endpoint handler above to test connection payload');
-  const [activeReq, setActiveReq] = useState(null);
+  const [activeReq, setActiveReq] = useState<string | null>(null);
 
   const rawCodeSnippet = `// Express / Next.js Secured API Dispatcher
 export async function GET(request) {
@@ -32,7 +39,7 @@ export async function GET(request) {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const simulateRequest = (item) => {
+  const simulateRequest = (item: EndpointItem) => {
     setActiveReq(item.key);
     setResponseLog(`Executing ${item.type} ${item.val} ...`);
     setTimeout(() => {

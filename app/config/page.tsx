@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   VscGithub, 
   VscMail, 
-  VscGitBranch, 
+  VscRepoForked, 
   VscGitCommit, 
   VscSync,
   VscCheckAll,
@@ -138,7 +138,7 @@ return [
           </div>
           
           <div className={styles.gitMetaBadge}>
-            <VscGitBranch size={13} className={styles.branchIcon} />
+            <VscRepoForked size={13} className={styles.branchIcon} />
             <span className={styles.branchName}>main</span>
             <span className={styles.dividerDot}>•</span>
             <button 

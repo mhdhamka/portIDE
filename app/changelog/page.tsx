@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { 
-  VscGitBranch, 
+  VscRepoForked, 
   VscCheck, 
   VscCopy, 
   VscPlay, 
@@ -262,7 +262,7 @@ console.log(changelogConfig.version);`,
               {ideMode === 'cursor' ? 'Cursor AI-Native Active' : ideMode === 'jetbrains' ? 'JetBrains PSI Engine Active' : 'Codespaces Cloud Active'}
             </span>
             <span className={styles.dividerDot}>•</span>
-            <VscGitBranch size={13} className={styles.branchIcon} />
+            <VscRepoForked size={13} className={styles.branchIcon} />
             <span className={styles.branchName}>main</span>
           </div>
         </div>

@@ -26,8 +26,7 @@ import {
   VscPackage,
   VscTerminal,
   VscDebugConsole,
-  VscCode, 
-  VscGitBranch,  
+  VscCode,  
   VscSync
 } from 'react-icons/vsc';
 
@@ -494,7 +493,7 @@ export default function ProjectsPage() {
         </div>
         
         <div className={styles.gitMetaBadge}>
-          <VscGitBranch size={13} className={styles.branchIcon} />
+          <VscRepoForked size={13} className={styles.branchIcon} />
           <span className={styles.branchName}>main</span>
           <span className={styles.dividerDot}>•</span>
           <button 

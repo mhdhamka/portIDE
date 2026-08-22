@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { VscGitBranch, VscSync } from 'react-icons/vsc';
+import { VscRepoForked, VscSync } from 'react-icons/vsc';
 import EndpointCode from '@/components/EndpointCode';
 import styles from '@/styles/Endpoint.module.css';
 
@@ -27,7 +27,7 @@ export default function ContactPage() {
         </div>
         
         <div className={styles.gitMetaBadge}>
-          <VscGitBranch size={13} className={styles.branchIcon} />
+          <VscRepoForked size={13} className={styles.branchIcon} />
           <span className={styles.branchName}>main</span>
           <span className={styles.dividerDot}>•</span>
           <button 

@@ -14,7 +14,7 @@ import {
   VscShield,
   VscCopy,
   VscCheckAll,
-  VscGitBranch,
+  VscRepoForked,
   VscGitCommit,
   VscSync,
   VscFileCode,
@@ -137,7 +137,7 @@ export default function OverviewPage() {
             </div>
             
             <div className={styles.gitMetaBadge}>
-              <VscGitBranch size={13} className={styles.branchIcon} />
+              <VscRepoForked size={13} className={styles.branchIcon} />
               <span className={styles.branchName}>main</span>
               <span className={styles.dividerDot}>•</span>
               <button 

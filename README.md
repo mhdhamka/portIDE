@@ -46,11 +46,13 @@
 
 ## Tech Stack
 
-* **Framework:** Next.js 16 (App Router)
-* **Bundler & Compiler:** Turbopack
-* **Styling:** CSS Modules (Scoped Styling & Dark Mode Themes)
-* **Animations:** Framer Motion
-* **API & Integrations:** GitHub REST API (Automated Commits & Releases Stream)
+| Category | Technology & Specification |
+| :--- | :--- |
+| **Framework** | Next.js 16 (App Router) |
+| **Bundler & Compiler** | Turbopack |
+| **Styling** | CSS Modules (Scoped Styling & Dark Mode Themes) |
+| **Animations** | Framer Motion |
+| **API & Integrations** | GitHub REST API (Automated Commits & Releases Stream) |
 
 ---
 

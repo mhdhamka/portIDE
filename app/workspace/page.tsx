@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useMemo, useRef } from 'react';
 import Image from 'next/image';
-import { GitHubCalendar } from 'react-github-calendar';
+// @ts-ignore
+import GitHubCalendar from 'react-github-calendar';
 import { 
   VscFolderOpened, 
   VscGithub, 

@@ -76,7 +76,7 @@ Getting Started
 Clone the repository and run the development server locally:
 
 ```bash
-git clone [https://github.com/mhdhamka/portIDE.git](https://github.com/mhdhamka/portIDE.git)
+git clone https://github.com/mhdhamka/portIDE.git
 cd portIDE
 npm install
 npm run dev

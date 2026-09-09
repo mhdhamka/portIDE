@@ -647,8 +647,8 @@ export default function ProjectsPage() {
           <div className={styles.contributions}>
             <GitHubCalendar
               username={process.env.NEXT_PUBLIC_GITHUB_USERNAME || 'mhdhamka'}
-              hideColorLegend
-              hideMonthLabels={false}
+              showColorLegend={false}
+              showMonthLabels={true}
               colorScheme="dark"
               theme={{
                 dark: ['#161B22', '#0e4429', '#006d32', '#26a641', '#39d353'],

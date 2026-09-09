@@ -97,7 +97,6 @@ export default function ProjectsPage() {
   };
 };
 
-  // 1. Change your ref name to target the terminal body container:
   const terminalBodyRef = useRef<HTMLDivElement>(null);
 
   const addLog = (msg: string) => {

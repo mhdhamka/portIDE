@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
 import Image from 'next/image';
 // @ts-ignore
-import GitHubCalendar from 'react-github-calendar';
+import { GitHubCalendar } from 'react-github-calendar';
 import { 
   VscFolderOpened, 
   VscGithub, 
@@ -97,7 +97,6 @@ export default function ProjectsPage() {
   };
 };
 
-  // 1. Change your ref name to target the terminal body container:
   const terminalBodyRef = useRef<HTMLDivElement>(null);
 
   const addLog = (msg: string) => {
@@ -647,8 +646,8 @@ export default function ProjectsPage() {
           <div className={styles.contributions}>
             <GitHubCalendar
               username={process.env.NEXT_PUBLIC_GITHUB_USERNAME || 'mhdhamka'}
-              hideColorLegend
-              hideMonthLabels={false}
+              showColorLegend={false}
+              showMonthLabels={true}
               colorScheme="dark"
               theme={{
                 dark: ['#161B22', '#0e4429', '#006d32', '#26a641', '#39d353'],

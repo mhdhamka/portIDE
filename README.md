@@ -4,7 +4,7 @@
 
 **An immersive, production-grade developer portfolio platform designed precisely to emulate a fully functional Visual Studio Code and multi-IDE workspace environment.**
 
-[Live Demo](https://localhost:3000) · [Report Bug](https://github.com/mhdhamka/portIDE/issues) · [Request Feature](https://github.com/mhdhamka/portIDE/issues)
+[Live Demo](https://port-ide.vercel.app/) · [Report Bug](https://github.com/mhdhamka/portIDE/issues) · [Request Feature](https://github.com/mhdhamka/portIDE/issues)
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Next.js](https://img.shields.io/badge/Next.js-16.x-black?logo=next.js)

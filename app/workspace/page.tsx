@@ -14,7 +14,6 @@ import {
   VscLoading,
   VscArrowSwap,
   VscRepo,
-  VscPerson,
   VscStarEmpty,
   VscRepoForked,
   VscFile,
@@ -28,21 +27,54 @@ import {
   VscTerminal,
   VscDebugConsole,
   VscCode,  
-  VscSync
+  VscSync,
+  VscChevronDown
 } from 'react-icons/vsc';
 
 import ProjectCard from '@/components/WorkspaceCard';
 import styles from '@/styles/Workspace.module.css';
 import KanbanBoard from '@/components/KanbanBoard';
-import DebuggerWidget from '@/components/DebuggerWidget';
-import ApiTester from '@/components/ApiTester';
 
-const projectImages: Record<string, string> = {
-  "pcs": "/images/github/Price-Checker-System.png",
-  "sandbox": "/images/github/DevSandBox.png",
-  "smart": "/images/github/SmartHealth-System.png",
-  "tree": "/images/github/Tree-Pacific-Database-System.png",
-};
+function getLanguageColor(language: string): string {
+  if (!language) return '#8b949e';
+
+  // Official GitHub Linguist color map with normalized lowercase keys
+  const githubColors: Record<string, string> = {
+    javascript: '#f7df1e',
+    typescript: '#3178c6',
+    python: '#3572A5',
+    html: '#e34c26',
+    css: '#563d7c',
+    java: '#b07219',
+    c: '#555555',
+    'c++': '#f34b7d',
+    'c#': '#178600',
+    php: '#4F5D95',
+    go: '#00ADD8',
+    rust: '#dea584',
+    ruby: '#701516',
+    swift: '#ffac45',
+    kotlin: '#A97BFF',
+    dart: '#00B4AB',
+    shell: '#89e051',
+    vue: '#41b883',
+    svelte: '#ff3e00',
+    jupyter: '#DA5B0B',
+  };
+
+  const normalized = language.toLowerCase();
+  if (githubColors[normalized]) {
+    return githubColors[normalized];
+  }
+
+  // Fallback hash for any custom or unique tags
+  let hash = 0;
+  for (let i = 0; i < language.length; i++) {
+    hash = language.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const hue = Math.abs(hash) % 360;
+  return `hsl(${hue}, 65%, 55%)`;
+}
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<any[]>([]);
@@ -60,11 +92,21 @@ export default function ProjectsPage() {
   const [activeTabId, setActiveTabId] = useState<string | null>(null);
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
   const [commandInput, setCommandInput] = useState('');
+  
+  // Helper function to generate real-time timestamps
+  const getTimestamp = () => {
+    return new Date().toLocaleTimeString('en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+    });
+  };
+
   const [terminalLogs, setTerminalLogs] = useState<string[]>([
-    '[12:00:01 AM] [Turbopack] Initializing Next.js 16 App Router...',
-    '[12:00:02 AM] [portIDE] Workspace loaded successfully for mhdhamka.',
-    '[12:00:02 AM] [Git] Repository sync status: up to date with origin/main.',
-    '[12:00:03 AM] [Copilot] AI Assistant models indexed and ready.'
+    `[${getTimestamp()}] [Turbopack] Initializing Next.js 16 App Router...`,
+    `[${getTimestamp()}] [portIDE] Workspace loaded successfully for mhdhamka.`,
+    `[${getTimestamp()}] [Git] Repository sync status: up to date with origin/main.`,
+    `[${getTimestamp()}] [Copilot] AI Assistant models indexed and ready.`
   ]);
   const [showTerminal, setShowTerminal] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -75,7 +117,9 @@ export default function ProjectsPage() {
   const [packageJsonDeps, setPackageJsonDeps] = useState<Record<string, string> | null>(null);
   const [loadingContents, setLoadingContents] = useState(false);
   const [copiedUrl, setCopiedUrl] = useState<string | null>(null);
-  const [selectedFile, setSelectedFile] = useState<{ name: string; path: string; content: string } | null>(null);
+  
+  const [selectedFile, setSelectedFile] = useState<{ name: string; path: string; rawLines: string[] } | null>(null);
+  const [visibleLinesCount, setVisibleLinesCount] = useState<number>(50);
   const [fileLoading, setFileLoading] = useState(false);
   const [currentPath, setCurrentPath] = useState('');
 
@@ -90,17 +134,17 @@ export default function ProjectsPage() {
   };
 
   const getGitHubHeaders = () => {
-  const token = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
-  return {
-    Accept: 'application/vnd.github.v3+json',
-    ...(token ? { Authorization: `Bearer ${token}` } : {})
+    const token = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
+    return {
+      Accept: 'application/vnd.github.v3+json',
+      ...(token ? { Authorization: `Bearer ${token}` } : {})
+    };
   };
-};
 
   const terminalBodyRef = useRef<HTMLDivElement>(null);
 
   const addLog = (msg: string) => {
-    setTerminalLogs((prev) => [...prev, `[${new Date().toLocaleTimeString()}] ${msg}`]);
+    setTerminalLogs((prev) => [...prev, `[${getTimestamp()}] ${msg}`]);
   };
 
   useEffect(() => {
@@ -136,7 +180,6 @@ export default function ProjectsPage() {
     async function fetchDeveloperData() {
       try {
         const username = process.env.NEXT_PUBLIC_GITHUB_USERNAME || 'mhdhamka';
-        const leetcodeUsername = process.env.NEXT_PUBLIC_LEETCODE_USERNAME || 'mhdhamka';
         
         addLog(`Connecting to GitHub API for @${username}...`);
         
@@ -154,14 +197,11 @@ export default function ProjectsPage() {
           const lcRes = await fetch('/api/leetcode');
           if (lcRes.ok) {
             const lcJson = await lcRes.json();
-            addLog(`LeetCode synced successfully: ${lcJson.totalSolved} total problems solved.`); 
-            
             if (lcJson && (lcJson.totalSolved !== undefined || lcJson.solved !== undefined)) {
               setLeetcodeData(lcJson);
               addLog(`LeetCode synced successfully.`);
             } else {
               setLeetcodeData({ totalSolved: 0, easySolved: 0, mediumSolved: 0, hardSolved: 0 });
-              addLog(`LeetCode profile format unrecognized.`);
             }
           }
         } catch (lcErr) {
@@ -172,17 +212,10 @@ export default function ProjectsPage() {
         // Helper function to smartly summarize and clean README markdown
         const summarizeReadme = (markdown: string): string => {
           if (!markdown) return 'No description provided.';
-
           let clean = markdown.replace(/\[?!\[.*?\]\(.*?\)\]\(.*?\)/g, '');
           clean = clean.replace(/!\[.*?\]\(.*?\)/g, '');
-
-          clean = clean.replace(/```[\s\S]*?```/g, '');
-          clean = clean.replace(/`.*?`/g, '');
-
-          clean = clean.replace(/#{1,6}\s+/g, '');
-          clean = clean.replace(/<[^>]*>/g, '');
-          clean = clean.replace(/---|\*\*\*|___/g, '');
-
+          clean = clean.replace(/```[\s\S]*?```/g, '').replace(/`.*?`/g, '');
+          clean = clean.replace(/#{1,6}\s+/g, '').replace(/<[^>]*>/g, '').replace(/---|\*\*\*|___/g, '');
           clean = clean.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
 
           const paragraphs = clean
@@ -191,13 +224,11 @@ export default function ProjectsPage() {
             .filter(p => p.length > 20 && !p.startsWith('http') && !p.toLowerCase().includes('license'));
 
           const summarySource = paragraphs.length > 0 ? paragraphs[0] : clean;
-
           if (summarySource.length > 170) {
             const truncated = summarySource.substring(0, 170);
             const lastSpace = truncated.lastIndexOf(' ');
             return (lastSpace > 0 ? truncated.substring(0, lastSpace) : truncated) + '...';
           }
-
           return summarySource || 'No description provided.';
         };
 
@@ -211,24 +242,20 @@ export default function ProjectsPage() {
         const formattedRepos = await Promise.all(
           data.map(async (repo: any) => {
             let description = repo.description || 'No description provided.';
-
             try {
               const readmeRes = await fetch(`https://api.github.com/repos/${username}/${repo.name}/readme`, {
                 headers: getGitHubHeaders()
               });
-
               if (readmeRes.ok) {
                 const readmeData = await readmeRes.json();
                 const decodedContent = atob(readmeData.content.replace(/\n/g, ''));
-                
-                // Apply the smart summarizer
                 const smartSummary = summarizeReadme(decodedContent);
                 if (smartSummary && smartSummary !== 'No description provided.') {
                   description = smartSummary;
                 }
               }
             } catch (err) {
-              // Fallback to standard repo description if README is missing or fails
+              // Fallback to description
             }
 
             return {
@@ -244,7 +271,6 @@ export default function ProjectsPage() {
               forks: repo.forks_count,
               updatedAt: repo.updated_at,
               language: repo.language,
-              image: projectImages[repo.name] || undefined, 
             };
           })
         );
@@ -322,7 +348,6 @@ export default function ProjectsPage() {
     }
   };
 
-  // Handle clicking items in the explorer (Drills down into directories or peeks files)
   const handleItemClick = async (item: any) => {
     const username = process.env.NEXT_PUBLIC_GITHUB_USERNAME || 'mhdhamka';
 
@@ -346,7 +371,8 @@ export default function ProjectsPage() {
     } else {
       try {
         setFileLoading(true);
-        setSelectedFile({ name: item.name, path: item.path, content: '// Loading snippet preview...' });
+        setSelectedFile({ name: item.name, path: item.path, rawLines: ['// Loading source file contents...'] });
+        setVisibleLinesCount(50);
         
         const res = await fetch(`https://api.github.com/repos/${username}/${activeModalRepo.title}/contents/${item.path}`, {
           headers: { Accept: 'application/vnd.github.v3+json' }
@@ -354,23 +380,20 @@ export default function ProjectsPage() {
         if (!res.ok) throw new Error('Failed to fetch file content');
         
         const fileData = await res.json();
-        // UTF-8 safe decode preventing encoding character glitches
         const decodedContent = decodeURIComponent(escape(atob(fileData.content.replace(/\n/g, ''))));
         const lines = decodedContent.split('\n');
-        const snippet = lines.slice(0, 35).join('\n');
-        const isTruncated = lines.length > 35;
 
         setSelectedFile({
           name: item.name,
           path: item.path,
-          content: isTruncated ? `${snippet}\n\n// ... [Snippet truncated for preview] ...` : snippet
+          rawLines: lines
         });
-        addLog(`Loaded preview for: ${item.path}`);
+        addLog(`Loaded file preview for: ${item.path} (${lines.length} lines)`);
       } catch (err) {
         setSelectedFile({
           name: item.name,
           path: item.path,
-          content: '// Error loading file content or binary file.'
+          rawLines: ['// Error loading file content or binary file format.']
         });
       } finally {
         setFileLoading(false);
@@ -378,10 +401,8 @@ export default function ProjectsPage() {
     }
   };
 
-  // Handle navigating back up parent directories
   const handleGoBack = async () => {
     if (!currentPath) return;
-    
     const pathSegments = currentPath.split('/');
     pathSegments.pop();
     const parentPath = pathSegments.join('/');
@@ -441,19 +462,10 @@ export default function ProjectsPage() {
       }
     });
 
-    const langColors: Record<string, string> = {
-      TypeScript: '#3178c6',
-      JavaScript: '#f1e05a',
-      PHP: '#4F5D95',
-      Python: '#3572A5',
-      HTML: '#e34c26',
-      CSS: '#563d7c',
-    };
-
     return Object.keys(counts).map((lang) => ({
       name: lang,
       percentage: total > 0 ? Math.round((counts[lang] / total) * 100) : 0,
-      color: langColors[lang] || '#8b949e',
+      color: getLanguageColor(lang), 
     }));
   }, [projects]);
 
@@ -463,26 +475,51 @@ export default function ProjectsPage() {
         const matchesSearch = 
           project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
           project.description.toLowerCase().includes(searchQuery.toLowerCase());
-        
         const matchesTag = selectedTag === 'All' || project.tags?.includes(selectedTag);
-
         return matchesSearch && matchesTag;
       })
       .sort((a, b) => {
-        if (sortBy === 'stars') {
-          return b.stars - a.stars;
-        }
+        if (sortBy === 'stars') return b.stars - a.stars;
         return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
       });
   }, [projects, searchQuery, selectedTag, sortBy]);
 
   const totalStars = useMemo(() => projects.reduce((acc, curr) => acc + (curr.stars || 0), 0), [projects]);
-  const totalForks = useMemo(() => projects.reduce((acc, curr) => acc + (curr.forks || 0), 0), [projects]);
+
+  const commandsList = useMemo(() => [
+    {
+      id: 'sort-stars',
+      label: 'View: Sort repositories by Star Count',
+      keyBadge: 'Stars',
+      action: () => { setSortBy('stars'); addLog('Sorted projects by Star Count'); }
+    },
+    {
+      id: 'sort-updated',
+      label: 'View: Sort repositories by Last Updated',
+      keyBadge: 'Recent',
+      action: () => { setSortBy('updated'); addLog('Sorted projects by Last Updated'); }
+    },
+    {
+      id: 'toggle-layout',
+      label: `View: Switch layout (Current: ${viewMode})`,
+      keyBadge: 'Layout',
+      action: () => { setViewMode(viewMode === 'grid' ? 'timeline' : 'grid'); addLog('Toggled view layout'); }
+    },
+    {
+      id: 'reset-filters',
+      label: 'Filter: Clear active search query and tag filters',
+      keyBadge: 'Reset',
+      action: () => { setSearchQuery(''); setSelectedTag('All'); addLog('Reset all filters'); }
+    }
+  ], [viewMode]);
+
+  const filteredCommands = useMemo(() => {
+    if (!commandInput.trim()) return commandsList;
+    return commandsList.filter(cmd => cmd.label.toLowerCase().includes(commandInput.toLowerCase()));
+  }, [commandsList, commandInput]);
 
   return (
     <div className={styles.page}>
-
-      {/* VS Code & Git Top Telemetry Bar for workspace.tsx */}
       <div className={styles.ideTopBar}>
         <div className={styles.workspaceBreadcrumb}>
           <span className={styles.folderRoot}>portIDE</span>
@@ -507,7 +544,6 @@ export default function ProjectsPage() {
         </div>
       </div>
       
-      {/* VS Code Split-Pane Editor Tabs Bar */}
       {openTabs.length > 0 && (
         <div className={styles.editorTabBar}>
           <div className={styles.tabsContainer}>
@@ -537,8 +573,6 @@ export default function ProjectsPage() {
       )}
 
       <div className={styles.container}>
-        
-        {/* GitHub Profile Card Header */}
         {githubUser && (
           <header className={styles.githubProfileHeader}>
             <div className={styles.profile}>
@@ -569,9 +603,7 @@ export default function ProjectsPage() {
           </header>
         )}
 
-        {/* Dual Stats Grid (GitHub + LeetCode) */}
         <div className={styles.developerStatsGrid}>
-          {/* GitHub Stats Cards */}
           <div className={styles.statsSubGroup}>
             <div className={styles.statCard}>
               <div className={styles.statIcon}><VscRepo size={20} /></div>
@@ -589,7 +621,6 @@ export default function ProjectsPage() {
             </div>
           </div>
 
-          {/* LeetCode Stats Card Widget */}
           <div className={styles.leetCodeCard}>
             <div className={styles.leetCodeHeader}>
               <div className={styles.lcTitleGroup}>
@@ -621,7 +652,6 @@ export default function ProjectsPage() {
           </div>
         </div>
 
-        {/* Live Commit Feed / Activity Stream */}
         {recentCommits.length > 0 && (
           <div className={styles.activityTicker}>
             <div className={styles.tickerHeader}>
@@ -640,7 +670,6 @@ export default function ProjectsPage() {
           </div>
         )}
 
-        {/* Contribution Heatmap Activity Graph */}
         <section className={styles.section}>
           <h2 className={styles.sectionSubTitle}>Contribution Activity</h2>
           <div className={styles.contributions}>
@@ -658,15 +687,10 @@ export default function ProjectsPage() {
           </div>
         </section>
 
-         {/* Kanban, Debugger, & API Interactive session */}
-          <div className={styles.container}>
-            {/* Add the Kanban Tracker Component */}
-            <KanbanBoard />
-            <DebuggerWidget />
-            <ApiTester />
-          </div>
+        <div className={styles.container}>
+          <KanbanBoard />
+        </div>
 
-        {/* Repositories Section Header & Controls */}
         <section className={styles.section}>
           <div className={styles.headerTop}>
             <div className={styles.iconWrapper}>
@@ -718,7 +742,6 @@ export default function ProjectsPage() {
             </p>
           </div>
 
-          {/* GitHub Language Breakdown Bar */}
           {!loading && languageStats.length > 0 && (
             <div className={styles.langBarContainer}>
               <div className={styles.langBar}>
@@ -807,7 +830,7 @@ export default function ProjectsPage() {
           </div>
         )}
 
-        {/* VS Code Command Palette Modal */}
+        {/* Dynamic Plugin-Based Command Palette Modal */}
         {isCommandPaletteOpen && (
           <div className={styles.modalOverlay} onClick={() => setIsCommandPaletteOpen(false)}>
             <div className={styles.paletteModalContent} onClick={(e) => e.stopPropagation()}>
@@ -816,47 +839,35 @@ export default function ProjectsPage() {
                 <input 
                   ref={cmdInputRef}
                   type="text"
-                  placeholder="Type a command (e.g., 'sort stars', 'view grid')..."
+                  placeholder="Type a command or filter actions..."
                   value={commandInput}
                   onChange={(e) => setCommandInput(e.target.value)}
                   className={styles.paletteInput}
                 />
               </div>
               <div className={styles.paletteCommandList}>
-                <div 
-                  className={styles.paletteCommandItem} 
-                  onClick={() => { setSortBy('stars'); setIsCommandPaletteOpen(false); addLog('Sorted by Stars'); }}
-                >
-                  <span>View: Sort repositories by Star Count</span>
-                  <span className={styles.cmdKey}>Stars</span>
-                </div>
-                <div 
-                  className={styles.paletteCommandItem} 
-                  onClick={() => { setSortBy('updated'); setIsCommandPaletteOpen(false); addLog('Sorted by Recent'); }}
-                >
-                  <span>View: Sort repositories by Last Updated</span>
-                  <span className={styles.cmdKey}>Recent</span>
-                </div>
-                <div 
-                  className={styles.paletteCommandItem} 
-                  onClick={() => { setViewMode(viewMode === 'grid' ? 'timeline' : 'grid'); setIsCommandPaletteOpen(false); }}
-                >
-                  <span>View: Toggle Grid / Timeline layout</span>
-                  <span className={styles.cmdKey}>Layout</span>
-                </div>
-                <div 
-                  className={styles.paletteCommandItem} 
-                  onClick={() => { setSearchQuery(''); setSelectedTag('All'); setIsCommandPaletteOpen(false); addLog('Reset all filters'); }}
-                >
-                  <span>Filter: Clear search query and tags</span>
-                  <span className={styles.cmdKey}>Reset</span>
-                </div>
+                {filteredCommands.length > 0 ? (
+                  filteredCommands.map((cmd) => (
+                    <div 
+                      key={cmd.id}
+                      className={styles.paletteCommandItem} 
+                      onClick={() => { cmd.action(); setIsCommandPaletteOpen(false); }}
+                    >
+                      <span>{cmd.label}</span>
+                      <span className={styles.cmdKey}>{cmd.keyBadge}</span>
+                    </div>
+                  ))
+                ) : (
+                  <div className={styles.paletteCommandItem} style={{ color: '#8b949e', justifyContent: 'center' }}>
+                    <span>No matching commands found.</span>
+                  </div>
+                )}
               </div>
             </div>
           </div>
         )}
 
-        {/* GitHub-style File Explorer & Dependency Modal */}
+        {/* GitHub-style File Explorer & Interactive Preview Modal */}
         {activeModalRepo && (
           <div className={styles.modalOverlay} onClick={() => setActiveModalRepo(null)}>
             <div className={styles.modalContentWide} onClick={(e) => e.stopPropagation()}>
@@ -897,16 +908,14 @@ export default function ProjectsPage() {
                 </div>
               )}
 
-              {/* Split Pane Layout: File Tree + Code Snippet Previewer */}
+              {/* Split Pane Layout */}
               <div className={styles.modalSplitView}>
-                {/* Left Side: File Explorer Tree */}
                 <div className={styles.fileExplorerBox}>
                   <div className={styles.fileExplorerHeader}>
                     <span>{currentPath ? `/${currentPath}` : 'Root'}</span>
                     <span>Type</span>
                   </div>
 
-                  {/* Go Back / Parent Directory Button */}
                   {currentPath && (
                     <div className={styles.fileItem} onClick={handleGoBack}>
                       <span className={styles.fileName}>
@@ -945,12 +954,12 @@ export default function ProjectsPage() {
                   )}
                 </div>
 
-                {/* Right Side: Code Snippet / AI Summary Preview Pane */}
+                {/* Right Side: Scrollable Code Snippet with Dynamic Pagination Load-More */}
                 <div className={styles.codePreviewPane}>
                   <div className={styles.previewHeader}>
                     <div className={styles.previewTab}>
                       <VscCode size={14} color="#58a6ff" />
-                      <span>{selectedFile ? selectedFile.path : 'Select a file to peek snippet'}</span>
+                      <span>{selectedFile ? `${selectedFile.path} (${selectedFile.rawLines.length} lines)` : 'Select a file to preview'}</span>
                     </div>
                     {selectedFile && (
                       <a href={`https://github.com/${githubUser?.login || 'mhdhamka'}/${activeModalRepo.title}/blob/main/${selectedFile.path}`} target="_blank" rel="noreferrer" className={styles.rawFileLink}>
@@ -962,22 +971,36 @@ export default function ProjectsPage() {
                     {fileLoading ? (
                       <div className={styles.modalLoading}>
                         <VscLoading className={styles.spinner} size={18} />
-                        <span>Fetching and parsing file snippet...</span>
+                        <span>Fetching file content stream...</span>
                       </div>
                     ) : selectedFile ? (
-                      <pre className={styles.codeSnippetPre}>
-                        <code>{selectedFile.content}</code>
-                      </pre>
+                      <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+                        <pre className={styles.codeSnippetPre} style={{ flex: 1, overflowY: 'auto' }}>
+                          <code>{selectedFile.rawLines.slice(0, visibleLinesCount).join('\n')}</code>
+                        </pre>
+                        {visibleLinesCount < selectedFile.rawLines.length && (
+                          <div style={{ padding: '8px 12px', background: '#161b22', borderTop: '1px solid #30363d', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <span style={{ fontSize: '12px', color: '#8b949e' }}>
+                              Showing {Math.min(visibleLinesCount, selectedFile.rawLines.length)} of {selectedFile.rawLines.length} lines
+                            </span>
+                            <button
+                              onClick={() => setVisibleLinesCount(prev => prev + 50)}
+                              style={{ background: '#21262d', color: '#c9d1d9', border: '1px solid #30363d', borderRadius: '4px', padding: '4px 10px', fontSize: '12px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}
+                            >
+                              <VscChevronDown size={13} /> Load 50 More Lines
+                            </button>
+                          </div>
+                        )}
+                      </div>
                     ) : (
                       <div className={styles.emptyPreviewState}>
                         <VscCode size={36} color="#30363d" />
-                        <p>Click any file from the left repository tree to instantly view its source code snippet and summary.</p>
+                        <p>Click any file from the left repository tree to inspect source code.</p>
                       </div>
                     )}
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         )}
@@ -995,42 +1018,39 @@ export default function ProjectsPage() {
             <VscLinkExternal size={14} />
           </a>
         </footer>
-
       </div>
 
-      {/* VS Code Bottom Terminal Console Bar */}
-        <div className={`${styles.terminalConsole} ${isFullscreen ? styles.isFullscreen : ''}`}>
-          <div className={styles.terminalBarHeader}>
-            <div className={styles.terminalTitleGroup} onClick={() => setShowTerminal(!showTerminal)}>
-              <VscDebugConsole size={14} color="#58a6ff" />
-              <span className={styles.breadcrumbPath}>portIDE</span>
-              <span className={styles.breadcrumbSeparator}>/</span>
-              <span className={styles.breadcrumbCurrent}>workspace</span>
-              <span className={styles.breadcrumbDivider}>•</span>
-              <span className={styles.telemetryLabel}>OUTPUT / TERMINAL TELEMETRY</span>
-            </div>
-            <div className={styles.terminalActions}>
-              <button 
-                className={styles.actionBtn} 
-                onClick={() => setIsFullscreen(!isFullscreen)}
-                title={isFullscreen ? "Restore size" : "Maximize terminal"}
-              >
-                {isFullscreen ? '❐' : '□'}
-              </button>
-              <span className={styles.toggleTerminalText} onClick={() => setShowTerminal(!showTerminal)}>
-                {showTerminal ? '▼ Hide' : '▲ Show'}
-              </span>
-            </div>
+      <div className={`${styles.terminalConsole} ${isFullscreen ? styles.isFullscreen : ''}`}>
+        <div className={styles.terminalBarHeader}>
+          <div className={styles.terminalTitleGroup} onClick={() => setShowTerminal(!showTerminal)}>
+            <VscDebugConsole size={14} color="#58a6ff" />
+            <span className={styles.breadcrumbPath}>portIDE</span>
+            <span className={styles.breadcrumbSeparator}>/</span>
+            <span className={styles.breadcrumbCurrent}>workspace</span>
+            <span className={styles.breadcrumbDivider}>•</span>
+            <span className={styles.telemetryLabel}>OUTPUT / TERMINAL TELEMETRY</span>
           </div>
-          {showTerminal && (
-            <div ref={terminalBodyRef} className={styles.terminalBody}>
-              {terminalLogs.map((log, index) => (
-                <div key={index} className={styles.terminalLine}>{log}</div>
-              ))}
-            </div>
-          )}
+          <div className={styles.terminalActions}>
+            <button 
+              className={styles.actionBtn} 
+              onClick={() => setIsFullscreen(!isFullscreen)}
+              title={isFullscreen ? "Restore size" : "Maximize terminal"}
+            >
+              {isFullscreen ? '❐' : '□'}
+            </button>
+            <span className={styles.toggleTerminalText} onClick={() => setShowTerminal(!showTerminal)}>
+              {showTerminal ? '▼ Hide' : '▲ Show'}
+            </span>
+          </div>
         </div>
-
+        {showTerminal && (
+          <div ref={terminalBodyRef} className={styles.terminalBody}>
+            {terminalLogs.map((log, index) => (
+              <div key={index} className={styles.terminalLine}>{log}</div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

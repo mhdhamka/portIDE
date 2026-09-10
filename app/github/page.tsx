@@ -1,22 +1,15 @@
 'use client';
 
 import { useState } from 'react';
-import { 
-  VscStarEmpty, 
-  VscRepoForked, 
+import {  
   VscLinkExternal, 
   VscGithub,
   VscBook,
   VscCode,
-  VscTerminal,
   VscLayers,
   VscCheck,
   VscCopy,
   VscSparkle,
-  VscSourceControl,
-  VscListTree,
-  VscFlame,
-  VscPreview
 } from 'react-icons/vsc';
 import styles from '@/styles/GithubPage.module.css';
 
@@ -133,11 +126,10 @@ export default function GithubPage() {
           {/* Right Side: Code Snippet / AI Summary Preview Pane */}
           <div className={styles.previewPane}>
             <div className={styles.previewHeader}>
-              <VscPreview size={14} color="#58a6ff" />
-              <span>Live Code Snippet / AI Summary</span>
+              <span>Live Code Snippet</span>
             </div>
             <div className={styles.previewContent}>
-              <p className={styles.previewLabel}>// Workspace Telemetry Preview</p>
+              <p className={styles.previewLabel}>Workspace Preview</p>
               <pre className={styles.previewCode}>
                 <code>{`const workspace = {
   author: "mdhamka",

@@ -162,7 +162,6 @@ return [
               <h1 className={styles.name}>Mohd Hamka</h1>
               <p className={styles.role}>Full-Stack Developer | AI & Cybersecurity Enthusiast</p>
               <div className={styles.location}>
-                <span className={styles.dot} />
                 Kuching, Sarawak, Malaysia
               </div>
             </div>
@@ -423,7 +422,7 @@ return [
 
         <footer className={styles.footer}>
           <Link href="/workspace" className={styles.githubGreenButton}>
-            <span>Explore my code projects</span>
+            <span>Explore workspace.tsx</span>
             <span className={styles.arrow}>→</span>
           </Link>
         </footer>

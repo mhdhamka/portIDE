@@ -309,7 +309,7 @@ const Terminal = ({ onToggle }: TerminalProps) => {
         <div className={styles.headerRightControls}>
           <div className={styles.shellSelectorContainer}>
             <div className={styles.shellSelector} onClick={() => setIsShellMenuOpen(prev => !prev)}>
-              <span>💻 bash</span>
+              <span>bash</span>
               <VscChevronDown size={12} />
             </div>
 

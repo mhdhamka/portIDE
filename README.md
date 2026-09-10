@@ -2,7 +2,7 @@
 
 # portIDE
 
-**An immersive, production-grade developer portfolio platform designed precisely to emulate a fully functional Visual Studio Code and multi-IDE workspace environment.**
+**An immersive developer portfolio platform designed precisely to emulate a fully functional Visual Studio Code and multi-IDE workspace environment.**
 
 [Live Demo](https://port-ide.vercel.app/) · [Report Bug](https://github.com/mhdhamka/portIDE/issues) · [Request Feature](https://github.com/mhdhamka/portIDE/issues)
 
@@ -17,7 +17,7 @@
 
 ## Overview
 
-**portIDE** breaks away from static, cookie-cutter portfolios. Built using Next.js 16, Turbopack, and CSS Modules, it functions as an interactive developer workspace. Visitors can experience a true-to-life IDE interface complete with a sidebar file explorer, active editor tabs, live code playgrounds, an AI-native composer agent, and real-time GitHub repository synchronization.
+**portIDE** moves beyond traditional, static portfolios by functioning as an immersive, interactive developer workspace built with Next.js 16, Turbopack, and CSS Modules. It delivers an authentic IDE experience featuring a sidebar file explorer, active editor tabs, live code playgrounds, an AI-native composer agent, and real-time GitHub repository synchronization.
 
 ---
 
@@ -59,19 +59,35 @@
 ## Project Structure
 
 ```text
+
 portIDE/
-├── public/                 # Static assets & logos
+├── .github/                # GitHub configurations & workflows
+├── .next/                  # Next.js build output
 ├── app/                    # Next.js App Router pages & API routes
-├── components/         # IDE layout, sidebar, terminal & editor components
-├── styles/             # Modular CSS stylesheets & theme variables
-├── .env                    # Environment configuration
-├── package.json
-└── README.md
+├── components/             # IDE layout, sidebar, terminal & editor components
+├── context/                # React context providers
+├── lib/                    # Utility functions and shared logic
+├── node_modules/           # Project dependencies
+├── public/                 # Static assets & logos
+├── styles/                 # Modular CSS stylesheets & theme variables
+├── types/                  # TypeScript definitions and type interfaces
+├── .env.example            # Example environment configuration
+├── .env.local              # Local environment variables
+├── .gitignore              # Git ignore rules
+├── bun.lock                # Bun package manager lockfile
+├── eslint.config.mjs       # ESLint configuration
+├── next-env.d.ts           # Next.js TypeScript declarations
+├── next.config.ts          # Next.js configuration
+├── package-lock.json       # npm package manager lockfile
+├── package.json            # Project dependencies and scripts
+├── README.md               # Project documentation
+├── tsconfig.json           # TypeScript configuration
+└── tsconfig.tsbuildinfo    # TypeScript build information
 
 ```
 ---
 
-Getting Started
+## Getting Started
 
 Clone the repository and run the development server locally:
 
@@ -79,6 +95,7 @@ Clone the repository and run the development server locally:
 git clone https://github.com/mhdhamka/portIDE.git
 cd portIDE
 npm install
+cp .env.example .env.local
 npm run dev
 
 Open http://localhost:3000 with your browser to launch the workspace.

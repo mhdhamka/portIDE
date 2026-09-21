@@ -16,7 +16,7 @@
     "react-dom": "^19.0.0",
     "react-github-calendar": "^5.0.9",
     "react-icons": "^5.5.0",
-    "vercel": "^59.11.2"
+    "vercel": "^59.19.0"
   },
   "devDependencies": {
     "@types/node": "^26.4.1",

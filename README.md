@@ -2,7 +2,7 @@
 
 # portIDE
 
-**An immersive developer portfolio platform designed precisely to emulate a fully functional Visual Studio Code and multi-IDE workspace environment.**
+> An immersive developer portfolio platform designed precisely to emulate a fully functional Visual Studio Code and multi-IDE workspace environment.
 
 [Live Demo](https://port-ide.vercel.app/) · [Report Bug](https://github.com/mhdhamka/portIDE/issues) · [Request Feature](https://github.com/mhdhamka/portIDE/issues)
 
